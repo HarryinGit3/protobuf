@@ -1,0 +1,37 @@
+syntax = "proto3";
+package CirmeAnalysis;
+
+message CrimeData{ 
+    string Metadata = 1;
+    message time_extend{
+        string startTime = 1;
+        string stopTime = 2;
+        double timeStep = 3;
+    }
+    message Extend {
+        double spaceX1 = 1;
+        double spaceX2 = 2;
+        double spaceY1 = 3;
+        double spaceY2 = 4;
+    }
+    message Data{
+        int32 gridRow = 1;
+        int32 gridColumn = 2;
+        string time = 3;
+        int32 crimeNum = 4;
+        double gridX = 5;
+        double gridY = 6;
+        double distancePol = 7;
+        double distanceBus = 8;
+        int32 weather = 9;
+        double landuseTown = 10;
+        double landuseVillage = 11;
+        double landuseCons = 12;
+        double landuseOther = 13;
+    }
+    message Grid{
+        double gridSize = 1;
+        int32 layer = 2
+    }
+    repeated Data allData = 2;
+}
