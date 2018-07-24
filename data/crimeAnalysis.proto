@@ -31,7 +31,7 @@ message CrimeData{
     }
     message Grid{
         double gridSize = 1;
-        int32 layer = 2
+        int32 layer = 2;
     }
     repeated Data allData = 2;
 }
