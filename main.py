@@ -1,10 +1,12 @@
 import psycopg2
 from tqdm import tqdm
 import calendar
+import data.crimeAnalysis_pb2 as ca
 
 
-# 获取数据
-def getDateFromPg(layer, startTime, stopTime):
+# 获取数据 根据层级，起始时间，四至范围
+def getDateFromPg(layer, startTime, stopTime, spaceX1, spaceX2, spaceY1,
+                  spaceY2):
     conn = psycopg2.connect(
         database="crimeanalysis",
         user="crimeanalysis",
@@ -13,7 +15,9 @@ def getDateFromPg(layer, startTime, stopTime):
         port="5432")
     cur = conn.cursor()
     str1 = "select  geomatrix.xcget_rows(code) as rs,geomatrix.xcget_cols(code) as cs,hour,cnt from crime.xcget_real_time_crime(" + str(
-        layer) + ",'" + str(startTime) + "','" + str(stopTime) + "') limit 100"
+        layer) + ",'" + str(startTime) + "','" + str(stopTime) + "'," + str(
+            spaceX1) + "," + str(spaceX2) + "," + str(spaceY1) + "," + str(
+                spaceY2) + ")"
     cur.execute(str1)
     rows = cur.fetchall()
     data = []
@@ -21,8 +25,8 @@ def getDateFromPg(layer, startTime, stopTime):
     for row in rows:
         i = 0
         tempd = []
-        tempd.append(row[0])
-        tempd.append(row[1])
+        tempd.append(int(row[0]))
+        tempd.append(int(row[1]))
         tempd.append(row[2])
         tempd.append(row[3])
         i = i + 1
@@ -68,21 +72,52 @@ def fill_data(data, t, years, startTime, stopTime):
                 continue
             else:
                 tempd = []
-                tempd.append(0)
-                tempd.append(0)
+                tempd.append(int(-1))
+                tempd.append(int(-1))
                 tempd.append(c)
-                tempd.append(0)
+                tempd.append(int(-1))
                 data.append(tempd)
-            print(c)
     return data
+
+
+def write_data(metaData, startTime, stopTime, spaceX1, spaceX2,
+               spaceY1, spaceY2, newData):
+    cd = ca.CrimeData()
+    time_extend = cd.Time_extend()
+    time_extend.startTime = startTime
+    time_extend.stopTime = stopTime
+    extend = cd.Extend()
+    extend.spaceX1 = spaceX1
+    extend.spaceX2 = spaceX2
+    extend.spaceY1 = spaceY1
+    extend.spaceY2 = spaceY2
+    length = len(newData)
+    path = "data/data.bin"
+    for i in tqdm(range(length)):
+        d = cd.allData.add()
+        d.gridRow = newData[i][0]
+        d.gridColumn = newData[i][1]
+        d.time = newData[i][2]
+        d.crimeNum = newData[i][3]
+    f = open(path, "wb")
+    x = cd.SerializeToString()
+    print(x)
+    f.write(x)
+    f.close()
 
 
 if __name__ == '__main__':
     startTime = 2012010100
-    stopTime = 2012010700
+    stopTime = 2012011000
+    spaceX1 = 120
+    spaceX2 = 122
+    spaceY1 = 30
+    spaceY2 = 32
     # 根据输入时间范围和层级 从数据库返回数据 数据为二维数组格式 data
-    data, data2 = getDateFromPg(12, startTime, stopTime)
+    data, data2 = getDateFromPg(12, startTime, stopTime, spaceX1, spaceX2,
+                                spaceY1, spaceY2)
     # 获取所有的时间，为set格式
     t, year = get_hours(data)
     # 根据起始时间和时间表年份表，填充数据
-    newData = fill_data(data2, t, year, startTime, stopTime)
+    newData = fill_data(data, t, year, startTime, stopTime)
+    write_data("案件",str(startTime),str(stopTime),spaceX1,spaceX2,spaceY1,spaceY2,newData)
