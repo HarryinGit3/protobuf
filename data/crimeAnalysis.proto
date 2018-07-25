@@ -3,7 +3,7 @@ package CirmeAnalysis;
 
 message CrimeData{ 
     string Metadata = 1;
-    message time_extend{
+    message Time_extend{
         string startTime = 1;
         string stopTime = 2;
         double timeStep = 3;

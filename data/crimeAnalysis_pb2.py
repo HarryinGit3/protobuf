@@ -19,35 +19,35 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='CirmeAnalysis',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\x13\x63rimeAnalysis.proto\x12\rCirmeAnalysis\"\x89\x04\n\tCrimeData\x12\x10\n\x08Metadata\x18\x01 \x01(\t\x12.\n\x07\x61llData\x18\x02 \x03(\x0b\x32\x1d.CirmeAnalysis.CrimeData.Data\x1a\x44\n\x0btime_extend\x12\x11\n\tstartTime\x18\x01 \x01(\t\x12\x10\n\x08stopTime\x18\x02 \x01(\t\x12\x10\n\x08timeStep\x18\x03 \x01(\x01\x1aL\n\x06\x45xtend\x12\x0f\n\x07spaceX1\x18\x01 \x01(\x01\x12\x0f\n\x07spaceX2\x18\x02 \x01(\x01\x12\x0f\n\x07spaceY1\x18\x03 \x01(\x01\x12\x0f\n\x07spaceY2\x18\x04 \x01(\x01\x1a\xfc\x01\n\x04\x44\x61ta\x12\x0f\n\x07gridRow\x18\x01 \x01(\x05\x12\x12\n\ngridColumn\x18\x02 \x01(\x05\x12\x0c\n\x04time\x18\x03 \x01(\t\x12\x10\n\x08\x63rimeNum\x18\x04 \x01(\x05\x12\r\n\x05gridX\x18\x05 \x01(\x01\x12\r\n\x05gridY\x18\x06 \x01(\x01\x12\x13\n\x0b\x64istancePol\x18\x07 \x01(\x01\x12\x13\n\x0b\x64istanceBus\x18\x08 \x01(\x01\x12\x0f\n\x07weather\x18\t \x01(\x05\x12\x13\n\x0blanduseTown\x18\n \x01(\x01\x12\x16\n\x0elanduseVillage\x18\x0b \x01(\x01\x12\x13\n\x0blanduseCons\x18\x0c \x01(\x01\x12\x14\n\x0clanduseOther\x18\r \x01(\x01\x1a\'\n\x04Grid\x12\x10\n\x08gridSize\x18\x01 \x01(\x01\x12\r\n\x05layer\x18\x02 \x01(\x05\x62\x06proto3')
+  serialized_pb=_b('\n\x13\x63rimeAnalysis.proto\x12\rCirmeAnalysis\"\x89\x04\n\tCrimeData\x12\x10\n\x08Metadata\x18\x01 \x01(\t\x12.\n\x07\x61llData\x18\x02 \x03(\x0b\x32\x1d.CirmeAnalysis.CrimeData.Data\x1a\x44\n\x0bTime_extend\x12\x11\n\tstartTime\x18\x01 \x01(\t\x12\x10\n\x08stopTime\x18\x02 \x01(\t\x12\x10\n\x08timeStep\x18\x03 \x01(\x01\x1aL\n\x06\x45xtend\x12\x0f\n\x07spaceX1\x18\x01 \x01(\x01\x12\x0f\n\x07spaceX2\x18\x02 \x01(\x01\x12\x0f\n\x07spaceY1\x18\x03 \x01(\x01\x12\x0f\n\x07spaceY2\x18\x04 \x01(\x01\x1a\xfc\x01\n\x04\x44\x61ta\x12\x0f\n\x07gridRow\x18\x01 \x01(\x05\x12\x12\n\ngridColumn\x18\x02 \x01(\x05\x12\x0c\n\x04time\x18\x03 \x01(\t\x12\x10\n\x08\x63rimeNum\x18\x04 \x01(\x05\x12\r\n\x05gridX\x18\x05 \x01(\x01\x12\r\n\x05gridY\x18\x06 \x01(\x01\x12\x13\n\x0b\x64istancePol\x18\x07 \x01(\x01\x12\x13\n\x0b\x64istanceBus\x18\x08 \x01(\x01\x12\x0f\n\x07weather\x18\t \x01(\x05\x12\x13\n\x0blanduseTown\x18\n \x01(\x01\x12\x16\n\x0elanduseVillage\x18\x0b \x01(\x01\x12\x13\n\x0blanduseCons\x18\x0c \x01(\x01\x12\x14\n\x0clanduseOther\x18\r \x01(\x01\x1a\'\n\x04Grid\x12\x10\n\x08gridSize\x18\x01 \x01(\x01\x12\r\n\x05layer\x18\x02 \x01(\x05\x62\x06proto3')
 )
 
 
 
 
 _CRIMEDATA_TIME_EXTEND = _descriptor.Descriptor(
-  name='time_extend',
-  full_name='CirmeAnalysis.CrimeData.time_extend',
+  name='Time_extend',
+  full_name='CirmeAnalysis.CrimeData.Time_extend',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='startTime', full_name='CirmeAnalysis.CrimeData.time_extend.startTime', index=0,
+      name='startTime', full_name='CirmeAnalysis.CrimeData.Time_extend.startTime', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='stopTime', full_name='CirmeAnalysis.CrimeData.time_extend.stopTime', index=1,
+      name='stopTime', full_name='CirmeAnalysis.CrimeData.Time_extend.stopTime', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='timeStep', full_name='CirmeAnalysis.CrimeData.time_extend.timeStep', index=2,
+      name='timeStep', full_name='CirmeAnalysis.CrimeData.Time_extend.timeStep', index=2,
       number=3, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
@@ -318,10 +318,10 @@ _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 CrimeData = _reflection.GeneratedProtocolMessageType('CrimeData', (_message.Message,), dict(
 
-  time_extend = _reflection.GeneratedProtocolMessageType('time_extend', (_message.Message,), dict(
+  Time_extend = _reflection.GeneratedProtocolMessageType('Time_extend', (_message.Message,), dict(
     DESCRIPTOR = _CRIMEDATA_TIME_EXTEND,
     __module__ = 'crimeAnalysis_pb2'
-    # @@protoc_insertion_point(class_scope:CirmeAnalysis.CrimeData.time_extend)
+    # @@protoc_insertion_point(class_scope:CirmeAnalysis.CrimeData.Time_extend)
     ))
   ,
 
@@ -350,7 +350,7 @@ CrimeData = _reflection.GeneratedProtocolMessageType('CrimeData', (_message.Mess
   # @@protoc_insertion_point(class_scope:CirmeAnalysis.CrimeData)
   ))
 _sym_db.RegisterMessage(CrimeData)
-_sym_db.RegisterMessage(CrimeData.time_extend)
+_sym_db.RegisterMessage(CrimeData.Time_extend)
 _sym_db.RegisterMessage(CrimeData.Extend)
 _sym_db.RegisterMessage(CrimeData.Data)
 _sym_db.RegisterMessage(CrimeData.Grid)
