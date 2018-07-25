@@ -81,7 +81,7 @@ def fill_data(data, t, years, startTime, stopTime):
 
 
 def write_data(metaData, startTime, stopTime, spaceX1, spaceX2,
-               spaceY1, spaceY2, newData):
+               spaceY1, spaceY2, newData,layer):
     cd = ca.CrimeData()
     time_extend = cd.Time_extend()
     time_extend.startTime = startTime
@@ -91,8 +91,10 @@ def write_data(metaData, startTime, stopTime, spaceX1, spaceX2,
     extend.spaceX2 = spaceX2
     extend.spaceY1 = spaceY1
     extend.spaceY2 = spaceY2
+    grid = cd.Grid()
+    grid.layer =layer
     length = len(newData)
-    path = "data/data.bin"
+    path = "data/data"+str(layer)+".bin"
     for i in tqdm(range(length)):
         d = cd.allData.add()
         d.gridRow = newData[i][0]
@@ -101,23 +103,23 @@ def write_data(metaData, startTime, stopTime, spaceX1, spaceX2,
         d.crimeNum = newData[i][3]
     f = open(path, "wb")
     x = cd.SerializeToString()
-    print(x)
     f.write(x)
     f.close()
 
 
 if __name__ == '__main__':
-    startTime = 2012010100
-    stopTime = 2012011000
-    spaceX1 = 120
-    spaceX2 = 122
-    spaceY1 = 30
-    spaceY2 = 32
-    # 根据输入时间范围和层级 从数据库返回数据 数据为二维数组格式 data
-    data, data2 = getDateFromPg(12, startTime, stopTime, spaceX1, spaceX2,
-                                spaceY1, spaceY2)
-    # 获取所有的时间，为set格式
-    t, year = get_hours(data)
-    # 根据起始时间和时间表年份表，填充数据
-    newData = fill_data(data, t, year, startTime, stopTime)
-    write_data("案件",str(startTime),str(stopTime),spaceX1,spaceX2,spaceY1,spaceY2,newData)
+    for layer in range(12,18):
+        startTime = 2012010100
+        stopTime = 2013103100
+        spaceX1 = 110
+        spaceX2 = 130
+        spaceY1 = 10
+        spaceY2 = 40
+        # 根据输入时间范围和层级 从数据库返回数据 数据为二维数组格式 data
+        data, data2 = getDateFromPg(12, startTime, stopTime, spaceX1, spaceX2,
+                                    spaceY1, spaceY2)
+        # 获取所有的时间，为set格式
+        t, year = get_hours(data)
+        # 根据起始时间和时间表年份表，填充数据
+        newData = fill_data(data, t, year, startTime, stopTime)
+        write_data("案件",str(startTime),str(stopTime),spaceX1,spaceX2,spaceY1,spaceY2,newData,layer)
