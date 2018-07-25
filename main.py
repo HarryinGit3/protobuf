@@ -94,6 +94,7 @@ def write_data(metaData, startTime, stopTime, spaceX1, spaceX2,
     grid = cd.Grid()
     grid.layer =layer
     length = len(newData)
+    print(length)
     path = "data/data"+str(layer)+".bin"
     for i in tqdm(range(length)):
         d = cd.allData.add()
@@ -116,7 +117,7 @@ if __name__ == '__main__':
         spaceY1 = 10
         spaceY2 = 40
         # 根据输入时间范围和层级 从数据库返回数据 数据为二维数组格式 data
-        data, data2 = getDateFromPg(12, startTime, stopTime, spaceX1, spaceX2,
+        data, data2 = getDateFromPg(layer, startTime, stopTime, spaceX1, spaceX2,
                                     spaceY1, spaceY2)
         # 获取所有的时间，为set格式
         t, year = get_hours(data)
